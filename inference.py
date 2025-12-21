@@ -6,13 +6,13 @@ import tensorflow as tf
 
 class PredictiveMaintenanceInference:
     def __init__(self, artifact_dir="artifacts"):
-        self.scaler = joblib.load(f"{artifact_dir}/scaler.joblib")
-        self.model = tf.keras.models.load_model(f"{artifact_dir}/failure_ann.keras")
+        self.scaler = joblib.load(f"{artifact_dir}/scaler.joblib") # Update artifact_dir if needed
+        self.model = tf.keras.models.load_model(f"{artifact_dir}/failure_ann.keras") # Update artifact_dir if needed
 
-        with open(f"{artifact_dir}/feature_order.json") as f:
+        with open(f"{artifact_dir}/feature_order.json") as f: # Update artifact_dir if needed
             self.feature_order = json.load(f)
 
-        with open(f"{artifact_dir}/type_mapping.json") as f:
+        with open(f"{artifact_dir}/type_mapping.json") as f: # Update artifact_dir if needed
             self.type_mapping = json.load(f)
 
         self.num_features = [
@@ -53,3 +53,4 @@ class PredictiveMaintenanceInference:
             "failure_probability": probs[:, 1],
             "failure_prediction": (probs[:, 1] >= threshold).astype(int)
         })
+
